@@ -4,6 +4,9 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait as WDWait
 from selenium.webdriver.common.by import By
 
+from locators.locators import HeaderLocators as HeadL
+from locators.locators import MainPageLocators as MainPL
+
 
 class MainPage:
     LAST_QUESTION = By.XPATH, f"//div[@id='accordion__heading-7']"
@@ -28,3 +31,11 @@ class MainPage:
         self.click_question_by_index(question_index)
         answer = By.XPATH, f"//div[@id='accordion__panel-{question_index}']/p"
         return self.wait.until(ec.visibility_of_element_located(answer)).text
+
+    def click_button_order_in_header(self):
+        self.wait.until(ec.element_to_be_clickable(HeadL.BUTTON_ORDER)).click()
+
+    def click_button_order(self):
+        button_order = self.wait.until(ec.element_to_be_clickable(MainPL.BUTTON_ORDER))
+        self.web_drv.execute_script("arguments[0].scrollIntoView();", button_order)
+        button_order.click()
