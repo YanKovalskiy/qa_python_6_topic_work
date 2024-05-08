@@ -1,21 +1,11 @@
 from selenium.webdriver.common.by import By
 
 
-class HeaderLocators:
-    LOGO_YANDEX = By.XPATH, "//a[contains(@class, 'LogoYandex')]"
-    LOGO_SCOOTER = By.XPATH, "//a[contains(@class, 'LogoScooter')]"
-    BUTTON_ORDER = By.XPATH, "//div[contains(@class, 'Header_Nav')]/button[text()='Заказать']"
-
-
-class MainPageLocators:
-    BUTTON_ORDER = By.XPATH, "//div[contains(@class, 'Home_FinishButton')]/button"
-
-
 class OrderPageLocators:
     INPUT_FIELD_NAME = By.XPATH, "//input[contains(@placeholder, 'Имя')]"
     INPUT_FIELD_LASTNAME = By.XPATH, "//input[contains(@placeholder, 'Фамилия')]"
     INPUT_FIELD_ADDRESS = By.XPATH, "//input[contains(@placeholder,'Адрес')]"
-    INPUT_FIELD_METRO = By.XPATH, "//input[contains(@class,'select-search')]"
+    SELECT_FIELD_METRO = By.XPATH, "//input[contains(@class,'select-search')]"
     INPUT_FIELD_PHONE = By.XPATH, "//input[contains(@placeholder,'Телефон')]"
     BUTTON_NEXT = By.XPATH, "//button[text()='Далее']"
 
