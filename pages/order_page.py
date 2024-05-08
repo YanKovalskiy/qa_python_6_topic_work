@@ -1,9 +1,11 @@
 import allure
+import time
 
 from selenium.webdriver.common.by import By
 from locators.locators import OrderPageLocators as OrdPL
 from pages.base_page import BasePage
 from pages.header import Header
+from pages.calendar import Calendar
 
 
 class OrderPage(BasePage):
@@ -47,7 +49,9 @@ class OrderPage(BasePage):
 
     def select_date_scooter_delivery(self, rental_date):
         with allure.step("Выбираем дату доставки самоката"):
-            pass
+            self.click_by_element(OrdPL.SELECT_FIELD_DATE)
+            calendar = Calendar(self.web_drv)
+            calendar.select_date(rental_date)
 
     def select_rental_period(self, period):
         with allure.step("Выбираем период аренды"):
@@ -66,16 +70,26 @@ class OrderPage(BasePage):
         with allure.step("Заполняем поле 'Комментарий'"):
             self.fill_field(OrdPL.INPUT_FIELD_COMMENT, comment)
 
+    def click_button_order(self):
+        with allure.step("Нажимаем кнопку 'Заказать' в форме заказа"):
+            self.click_by_element(OrdPL.BUTTON_ORDER)
+
     def fill_section_about_rent(self, rental_date, period, scooter_color, comment):
         with allure.step("Заполняем форму заказа, раздел об аренде"):
             self.select_date_scooter_delivery(rental_date)
             self.select_rental_period(period)
             self.select_color_scooter(scooter_color)
             self.fill_field_comment(comment)
-            header = Header(self.web_drv)
-            header.click_button_order()
+            self.click_button_order()
 
     def fill_order_form(self, name, last_name, address, name_metro_station, phone,
                         rental_date, period, scooter_color, comment):
         self.fill_section_about_client(name, last_name, address, name_metro_station, phone)
         self.fill_section_about_rent(rental_date, period, scooter_color, comment)
+
+    def click_button_yes_in_confirmation_window(self):
+        with allure.step("Нажимаем кнопку 'Да' в окне подтверждения"):
+            self.click_by_element(OrdPL.BUTTON_YES)
+
+    def get_header_text_in_success_window(self):
+        return self.get_element_text(OrdPL.TEXT_HEADER_ORDER_PLACED)

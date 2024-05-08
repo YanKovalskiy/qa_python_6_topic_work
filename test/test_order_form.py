@@ -27,3 +27,5 @@ def test_oder_form(web_drv, point_of_entry, data_set):
 
     order_page = OrderPage(web_drv)
     order_page.fill_order_form(*data_set)
+    order_page.click_button_yes_in_confirmation_window()
+    assert 'Заказ оформлен' in order_page.get_header_text_in_success_window()
