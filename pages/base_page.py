@@ -25,6 +25,9 @@ class BasePage:
     def get_element_text(self, locator, timeout=DEFAULT_TIMEOUT):
         return WDWait(self.web_drv, timeout).until(ec.visibility_of_element_located(locator)).text
 
+    def get_attribute_element(self, locator, attribute, timeout=DEFAULT_TIMEOUT):
+        return WDWait(self.web_drv, timeout).until(ec.visibility_of_element_located(locator)).get_attribute(attribute)
+
     def fill_field(self, locator, text, timeout=DEFAULT_TIMEOUT):
         WDWait(self.web_drv, timeout).until(ec.element_to_be_clickable(locator)).send_keys(text)
 
