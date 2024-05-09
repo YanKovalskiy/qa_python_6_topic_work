@@ -1,10 +1,8 @@
 import allure
-import time
 
 from selenium.webdriver.common.by import By
 from locators.locators import OrderPageLocators as OrdPL
 from pages.base_page import BasePage
-from pages.header import Header
 from pages.calendar import Calendar
 
 
