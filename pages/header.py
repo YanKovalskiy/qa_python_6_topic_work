@@ -9,6 +9,8 @@ class Header(BasePage):
     LOGO_SCOOTER = By.XPATH, "//a[contains(@class, 'LogoScooter')]"
     BUTTON_ORDER = By.XPATH, "//div[contains(@class, 'Header_Nav')]/button[text()='Заказать']"
 
+    DZEN_SEARCH_BUTTON = By.XPATH, "//button[@class ='dzen-search-arrow-common__button']"
+
     def __init__(self, web_drv):
         super().__init__(web_drv)
 
@@ -21,3 +23,6 @@ class Header(BasePage):
 
     def click_logo_scooter(self):
         self.click_by_element(self.LOGO_SCOOTER)
+
+    def wait_dzen_button_search(self):
+        self.wait_visible_element(self.DZEN_SEARCH_BUTTON, timeout=30)
