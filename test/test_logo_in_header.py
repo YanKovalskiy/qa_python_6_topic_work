@@ -1,11 +1,9 @@
 import allure
-from pages.header import Header
 from config import URL
 
 
 @allure.title('Проверка нажатия на логотип Яндекс')
-def test_click_logo_yandex(web_drv):
-    header = Header(web_drv)
+def test_click_logo_yandex(web_drv, header):
     with allure.step('Нажимаем на логотип Яндекс'):
         header.click_logo_yandex()
     with allure.step('Переходим в новое окно'):
@@ -15,8 +13,7 @@ def test_click_logo_yandex(web_drv):
 
 
 @allure.title('Проверка нажатия на логотип Самокат')
-def test_click_logo_scooter(web_drv):
-    header = Header(web_drv)
+def test_click_logo_scooter(web_drv, header):
     with allure.step(f'Переходим на страницу {URL}/order'):
         header.open_page(f'{URL}/order')
     with allure.step('Нажимаем на логотип Самокат'):

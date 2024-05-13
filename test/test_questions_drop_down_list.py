@@ -1,8 +1,6 @@
 import pytest
 import allure
 
-from pages.main_page import MainPage
-
 
 @pytest.mark.parametrize(
     'question_index, answer_text',
@@ -23,6 +21,5 @@ from pages.main_page import MainPage
 )
 @allure.title('Проверка списка вопросов/ответов')
 @allure.description('Проверка соответствия текста ответа в раскрывающемся списке вопросов')
-def test_questions_drop_down_list(web_drv, question_index, answer_text):
-    mp = MainPage(web_drv)
-    assert mp.get_answer_text_by_question_index(question_index) == answer_text
+def test_questions_drop_down_list(web_drv, main_page, question_index, answer_text):
+    assert main_page.get_answer_text_by_question_index(question_index) == answer_text

@@ -3,6 +3,9 @@ import pytest
 from selenium import webdriver
 from config import URL
 
+from pages.header import Header
+from pages.main_page import MainPage
+from pages.order_page import OrderPage
 
 def pytest_make_parametrize_id(val):
     return repr(val)
@@ -17,3 +20,18 @@ def web_drv():
     yield driver
 
     driver.quit()
+
+
+@pytest.fixture()
+def header(web_drv):
+    return Header(web_drv)
+
+
+@pytest.fixture()
+def main_page(web_drv):
+    return MainPage(web_drv)
+
+
+@pytest.fixture()
+def order_page(web_drv):
+    return OrderPage(web_drv)
