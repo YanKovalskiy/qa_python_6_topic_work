@@ -5,7 +5,7 @@ from pages.base_page import BasePage
 
 
 class MainPage(BasePage):
-    LAST_QUESTION = By.XPATH, f"//div[@id='accordion__heading-7']"
+    LAST_QUESTION = By.XPATH, "//div[@id='accordion__heading-7']"
     BUTTON_ORDER = By.XPATH, "//div[contains(@class, 'Home_FinishButton')]/button"
 
     def __init__(self, web_drv):
