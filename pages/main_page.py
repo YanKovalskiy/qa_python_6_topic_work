@@ -2,14 +2,10 @@ import allure
 
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
+from locators.main_page_locators import MainPageLocators
 
 
 class MainPage(BasePage):
-    LAST_QUESTION = By.XPATH, "//div[@id='accordion__heading-7']"
-    BUTTON_ORDER = By.XPATH, "//div[contains(@class, 'Home_FinishButton')]/button"
-
-    def __init__(self, web_drv):
-        super().__init__(web_drv)
 
     def click_question_by_index(self, question_index):
         with allure.step('Нажимаем на проверяемый элемент списка'):
@@ -18,7 +14,7 @@ class MainPage(BasePage):
 
     def get_answer_text_by_question_index(self, question_index):
         with allure.step('Прокручиваем страницу до последнего вопроса'):
-            self.scroll_to_element(self.LAST_QUESTION)
+            self.scroll_to_element(MainPageLocators.LAST_QUESTION)
 
         self.click_question_by_index(question_index)
 
@@ -28,6 +24,6 @@ class MainPage(BasePage):
 
     def click_button_order(self):
         with allure.step("Прокручиваем страницу до кнопки 'Заказать' на главной странице"):
-            self.scroll_to_element(self.BUTTON_ORDER)
+            self.scroll_to_element(MainPageLocators.BUTTON_ORDER)
         with allure.step("Нажимаем на кнопку"):
-            self.click_by_element(self.BUTTON_ORDER)
+            self.click_by_element(MainPageLocators.BUTTON_ORDER)
